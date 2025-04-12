@@ -1,0 +1,113 @@
+body {
+  width: 65%;
+  margin: auto;
+  background-color: #1a3730;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+h1, h2 {
+  text-align: center;
+}
+.heading {
+  color: whitesmoke;
+  font-size: 1.4rem;
+  margin-top: 3rem;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+#player, #computer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 5px solid #d4c3bf;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: whitesmoke;
+}
+.images {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#player img {
+  opacity: 50%;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+#player img:hover {
+  opacity: 100%;
+}
+section.scoreboard {
+  border-style: solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  background-color: #d4c3bf;
+  margin-bottom: 2rem;
+}
+#result {
+  border-bottom: 3px dashed #1A3730;
+  justify-content: center;
+  padding-bottom: 1rem;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#wins, #losses, #ties {
+  font-size: 2rem;
+  font-weight: 600;
+}
+p.label {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+.reset {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+}
+.reset button {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  font-size: 1.2rem;
+  color:whitesmoke;
+  background: #1A3730;
+}
+
+.reset button:hover {
+  color: black;
+  background: #A6D3A0;
+}
+
+@media screen and (max-width: 768px)  {
+  main {grid-template-columns: 1fr;}
+  main img {transform: scale(.9);}
+  .heading {
+    margin-top: 0;
+  }
+  main {
+    gap: 0rem;
+  }
+  p.label {
+    font-size: 1rem;
+  }
+  .reset button {
+    font-size: 0.8rem;
+  }
+}
