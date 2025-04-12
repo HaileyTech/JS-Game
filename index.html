@@ -9,20 +9,20 @@
 </head>
 <body>
     <div class="heading">
-        <h1>Rock, Paper, Scissors Game</h1>
+        <h1>Rock, Paper, Scissors</h1>
     </div>
     <main>
         <section id="player">
             <h2 id="player-choice">You choose ...</h2>
             <div class="images">
-                <img src="images/rock.svg" alt="rock" onclick="play('rock')">
-                <img src="images/paper.svg" alt="paper" onclick="play('paper')">
-                <img src="images/scissors.svg" alt = "scissors" onclick="play('scissors')">
+                <img id="rock-img" src="images/rock.svg" alt="rock" onclick="play('rock')">
+                <img id="paper-img" src="images/paper.svg" alt="paper" onclick="play('paper')">
+                <img id="scissors-img" src="images/scissors.svg" alt = "scissors" onclick="play('scissors')">
             </div>
         </section>
         <section id="computer">
             <h2 id="computer choice">Opponent chooses ...</h2>
-            <img src="images/mystery.svg" alt="computer choice">
+            <img id="comp-img" src="images/mystery.svg" alt="computer choice">
         </section>
     </main>
         <section class="scoreboard">
