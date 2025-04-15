@@ -25,24 +25,29 @@
             <img id="comp-img" src="images/mystery.svg" alt="computer choice">
         </section>
     </main>
-        <section class="scoreboard">
-            <h2 id="result">Results</h2>
-            <div id="wins" class="score">
-                <h3 id="wins-num">0</h3>
-                <p class="label">Wins</p>
-            </div>
-            <div id="ties" class="score">
-                <h3 id="ties-num">0</h3>
-                <p class="label">Ties</p>
-            </div>
-            <div id="losses" class=score>
-                <h3 id="losses-num">0</h3>
-                <p class="label">Losses</p>
-            </div>
-            <div class="reset">
-                <button onclick="reset()">Reset Score</button>
-            </div>
-        </section>
-        <script src="index.js"></script>
+
+    <!-- This is where the animation takes place -->
+    <div id="gamePlay">
+    </div>
+
+    <section class="scoreboard">
+        <h2 id="result">Results</h2>
+        <div id="wins" class="score">
+            <h3 id="wins-num">0</h3>
+            <p class="label">Wins</p>
+        </div>
+        <div id="ties" class="score">
+            <h3 id="ties-num">0</h3>
+            <p class="label">Ties</p>
+        </div>
+        <div id="losses" class=score>
+            <h3 id="losses-num">0</h3>
+            <p class="label">Losses</p>
+        </div>
+        <div class="reset">
+            <button onclick="reset()">Reset Score</button>
+        </div>
+    </section>
+    <script src="index.js"></script>
 </body>
 </html>

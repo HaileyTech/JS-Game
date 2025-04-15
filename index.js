@@ -37,7 +37,7 @@ function play(choice) {
       wins++;
     } else {
       document.getElementById("result").innerHTML =
-        "Rock beats scissors. You loose";
+        "Rock beats scissors. You lose";
       losses++;
     }
   } else if (compChoice == 2) {
@@ -45,7 +45,7 @@ function play(choice) {
     document.getElementById("comp-img").src = "images/paper.svg";
     if (choice == "rock") {
       document.getElementById("result").innerHTML =
-        "Paper beats rock. You loose.";
+        "Paper beats rock. You lose.";
       losses++;
     } else if (choice == "paper") {
       document.getElementById("result").innerHTML =
@@ -65,7 +65,7 @@ function play(choice) {
       wins++;
     } else if (choice == "paper") {
       document.getElementById("result").innerHTML =
-        "Scissors beats paper. You loose";
+        "Scissors beats paper. You lose";
       losses++;
     } else {
       document.getElementById("result").innerHTML =
@@ -74,6 +74,8 @@ function play(choice) {
     }
   }
 
+  animation(choice, compChoice);
+  
   sessionStorage.setItem("winCount", wins);
   sessionStorage.setItem("tieCount", ties);
   sessionStorage.setItem("lossCount", losses);
@@ -82,7 +84,39 @@ function play(choice) {
   document.getElementById("ties-num").innerHTML = sessionStorage.getItem("tieCount");
   document.getElementById("losses-num").innerHTML = sessionStorage.getItem("lossCount");
 }, 250);
+
 }
+
+// function animation(choice, compChoice) {
+//   const divElem = document.getElementById("gamePlay");
+//   divElem.classList.add("showing");
+//   document.getElementById("gamePlay").innerHTML = `<h2>${document.getElementById("result").innerHTML}</h2>`;
+// }
+
+// function animation(choice, compChoice) {
+//   const divElem = document.getElementById("gamePlay");
+
+//   // Update content first
+//   divElem.innerHTML = `<h2>${document.getElementById("result").innerHTML}</h2>`;
+
+//   // Then trigger the transition
+//   divElem.classList.add("showing");
+// }
+
+
+function animation(choice, compChoice) {
+  const divElem = document.getElementById("gamePlay");
+
+  // Update the result text
+  // divElem.innerHTML = `<h2>${document.getElementById("result").innerHTML}</h2>`;
+
+  // Show the div
+  divElem.classList.add("showing");
+}
+
+
+
+
 
 function reset() {
   sessionStorage.setItem("winCount", 0);
@@ -93,6 +127,9 @@ function reset() {
   document.getElementById("ties-num").innerHTML = sessionStorage.getItem("tieCount");
   document.getElementById("losses-num").innerHTML = sessionStorage.getItem("lossCount");
   document.getElementById("player-choice").innerHTML = "You choose ...";
-   document.getElementById("comp-img").src = "images/mystery.svg";
+  document.getElementById("comp-img").src = "images/mystery.svg";
   document.getElementById("result").innerHTML = "Results";
+
+  document.getElementById("gamePlay").classList.remove("showing");
+  
 }
