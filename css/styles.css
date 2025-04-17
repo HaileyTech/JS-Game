@@ -41,24 +41,34 @@ section {
   border-radius: 5px;
 }
 .images {
-  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 #player img {
+  width: 100px;
+  height: auto;
   opacity: 50%;
   transition: all .3s ease-in-out;
   cursor: pointer;
+}
+#computer img {
+  width: 100px;
+  height: auto;
 }
 #player img:hover {
   opacity: 100%;
 }
 
+.oppPaper {
+  width: 100px;
+  height: auto;
+}
+
 /* Game Play Animmation */
 #gamePlay {
   background-color: whitesmoke;
-  height: 100px;
+  height: 200px;
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 20px;
@@ -67,10 +77,36 @@ section {
   display: none;
   max-width: 70%;
   margin: 10px auto 20px auto;
+  align-items: center;
+  
 }
+
+#gamePlay img {
+  height: 100px;
+  
+}
+
+/* #playerMove {
+  transform: rotate(180deg);
+  transform: scaleX(-1);
+} */
 #gamePlay.showing {
-  display: block;
+  display: flex;
+  justify-content: space-between;
 }
+
+.movingPlay{
+  animation: 0.5s 3 shake;
+}
+
+@keyframes shake{
+  from {
+    transform: translateY(-10%);
+  }
+  to {
+    transform: translateY(20%);
+  }
+} 
 
 /* Score Board */
 section.scoreboard {

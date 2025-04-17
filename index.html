@@ -11,23 +11,30 @@
     <div class="heading">
         <h1>Rock, Paper, Scissors</h1>
     </div>
+    <!-- Warning message for user if they try to choose too soon -->
+    <div id="wait-message" style="display: none; color: white; text-align: center;">
+        **** Please wait for the current round to finish ****
+    </div>
+      
     <main>
         <section id="player">
             <h2 id="player-choice">You choose ...</h2>
             <div class="images">
-                <img id="rock-img" src="images/rock.svg" alt="rock" onclick="play('rock')">
-                <img id="paper-img" src="images/paper.svg" alt="paper" onclick="play('paper')">
-                <img id="scissors-img" src="images/scissors.svg" alt = "scissors" onclick="play('scissors')">
+                <img id="rock-img" src="images/rock.png" alt="rock" onclick="play('rock')">
+                <img id="paper-img" src="images/paper.png" alt="paper" onclick="play('paper')">
+                <img id="scissors-img" src="images/scissors.png" alt = "scissors" onclick="play('scissors')">
             </div>
         </section>
         <section id="computer">
             <h2 id="computer choice">Opponent chooses ...</h2>
-            <img id="comp-img" src="images/mystery.svg" alt="computer choice">
+            <img id="comp-img" style="height: 100px; width: auto;" src="images/mystery.svg" alt="computer choice">
         </section>
     </main>
 
     <!-- This is where the animation takes place -->
     <div id="gamePlay">
+        <img id="playerMove" src="images/rock.png" alt="rock">
+        <img id="oppMove" src="images/oppRock.png" alt="rock">
     </div>
 
     <section class="scoreboard">
