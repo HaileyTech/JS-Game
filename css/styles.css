@@ -17,6 +17,7 @@ h3 {
   font-size: 1.2rem;
   margin-top: 2rem;
 }
+
 /* Player Selection */
 main {
   display: grid;
@@ -32,7 +33,6 @@ section {
 }
 #player, #computer {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   border: 5px solid #d4c3bf;
   margin: 1rem 0;
@@ -44,6 +44,7 @@ section {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
 }
 #player img {
   width: 100px;
@@ -60,18 +61,18 @@ section {
   opacity: 100%;
 }
 
-.oppPaper {
-  width: 100px;
+#player #paper-img {
+  width: 120px;
   height: auto;
 }
 
 /* Game Play Animmation */
 #gamePlay {
   background-color: whitesmoke;
-  height: 200px;
+  height: 180px;
   margin-top: 10px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 20px 40px;
   border: 5px solid #d4c3bf;
   border-radius: 5px;
   display: none;
@@ -81,25 +82,27 @@ section {
   
 }
 
-#gamePlay img {
-  height: 100px;
-  
+#gamePlay img { 
+  height: 100px; 
+  width: auto;
 }
 
-/* #playerMove {
-  transform: rotate(180deg);
-  transform: scaleX(-1);
-} */
 #gamePlay.showing {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.movingPlay{
-  animation: 0.5s 3 shake;
+#gamePlay img.centered {
+  position: absolute;
+  justify-content: center;
 }
 
-@keyframes shake{
+.movingPlay { animation: 0.5s 3 shake; }
+
+@keyframes shake {
   from {
     transform: translateY(-10%);
   }
@@ -107,6 +110,21 @@ section {
     transform: translateY(20%);
   }
 } 
+
+.middle {
+  justify-content: center !important;
+}
+
+#gamePlay img.on-top {
+  transform: translateY(-50%) !important;
+  transition: all 0.5s ease-in-out;
+}
+
+#gamePlay img.on-bottom {
+  transform: translateY(50%) !important; 
+  transition: all 0.5s ease-in-out;
+}
+
 
 /* Score Board */
 section.scoreboard {
@@ -163,19 +181,29 @@ p.label {
 @media screen and (max-width: 768px)  {
   main {grid-template-columns: 1fr;}
   main img {transform: scale(.9);}
+  body {
+    width: 95%
+  }
   .heading {
     margin-top: 0;
   }
-  main {
-    gap: 0rem;
+  .images {
+    flex-wrap: wrap;
   }
   #gamePlay {
     max-width: 100%;
   }
+  #gamePlay img { 
+    height: 80px; 
+    width: auto;
+  }
   p.label {
     font-size: 1rem;
   }
-  .reset button {
-    font-size: 0.8rem;
+}
+@media screen and (max-width: 400px)  {
+  #gamePlay {
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }

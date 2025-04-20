@@ -1,6 +1,5 @@
 let isProcessing = false;
 
-
 function play(choice) {
   let compChoice = Math.floor(Math.random() * 3 + 1); // 1 is rock, 2 is paper, 3 is scissors
   let wins = sessionStorage.getItem("winCount");
@@ -8,10 +7,18 @@ function play(choice) {
   let losses = sessionStorage.getItem("lossCount");
   document.getElementById("comp-img").src = "images/mystery.svg";
   document.getElementById("result").innerHTML = ". . .";
-  let result;
+  let result = "";
+
+  // Resets to default size
+  document.getElementById("comp-img").style.width = "100px";
+  document.getElementById("comp-img").style.height = "auto";
+  document.getElementById("oppMove").style.width = "auto";
+  document.getElementById("oppMove").style.height = "100px";
+  document.getElementById("playerMove").style.width = "auto";
+  document.getElementById("playerMove").style.height = "100px";
 
 
-  // Block clicks during processing
+  // Do not allow user to click again during processing
   if (isProcessing) {
     const waitMessage = document.getElementById("wait-message");
     waitMessage.style.display = "block";
@@ -63,6 +70,8 @@ function play(choice) {
     }
   } else if (compChoice == 2) { // computer chose paper
     document.getElementById("comp-img").src = "images/oppPaper.png";
+    document.getElementById("comp-img").style.width = "120px";
+    document.getElementById("comp-img").style.height = "auto";
     if (choice == "rock") {
       document.getElementById("result").innerHTML =
         "Paper beats rock. You lose.";
@@ -94,8 +103,6 @@ function play(choice) {
       result = "tie";
     }
   }
-
-  result = "hi"
   
   // Update session storage
   sessionStorage.setItem("winCount", wins);
@@ -107,32 +114,122 @@ function play(choice) {
   document.getElementById("losses-num").innerHTML = sessionStorage.getItem("lossCount");
   isProcessing = false; // Allow user to click again
   document.getElementById("wait-message").style.display = "none";
+
+  compare(result, choice, compChoice)
 }, 1600);
 
-compare(result)
+  // Changes back to shaking fists
+  document.getElementById("playerMove").src = "images/rock.png"
+  document.getElementById("oppMove").src = "images/oppRock.png"
 }
 
+
+
+function compare(result, choice, compChoice) {
+  const player = document.getElementById("playerMove");
+  const opp = document.getElementById("oppMove");
+  const gamePlay = document.getElementById("gamePlay");
+
+  // Remove previous positioning classes
+  player.classList.remove("centered", "on-top", "on-bottom");
+  opp.classList.remove("centered", "on-top", "on-bottom");
+
+  if (choice === "paper") {
+    // Make paper larger to match size of other options
+    document.getElementById("playerMove").style.width = "140px";
+    document.getElementById("playerMove").style.height = "auto";
+  }
+
+  if (compChoice === 1) {
+    // computer chose rock
+    compChoice = "oppRock";
+    if (result !== "tie") {
+      if (choice === "paper") {
+        // player won with paper
+        gamePlay.classList.add("middle");
+        player.classList.add("centered", "on-top");
+        opp.classList.add("centered", "on-bottom");
+      } else {
+        // player lost with scissors
+        gamePlay.classList.add("middle");
+        opp.classList.add("centered", "on-top");
+        player.classList.add("centered", "on-bottom");
+      }
+    }
+    else { // result is a tie (just move to the middle)
+      gamePlay.classList.add("middle");
+    }
+  } else if (compChoice === 2) {
+    // computer chose paper
+    compChoice = "oppPaper";
+    // Make paper larger to match size of other options
+    document.getElementById("oppMove").style.width = "140px";
+    document.getElementById("oppMove").style.height = "auto";
+    if (result !== "tie") {
+      if (choice === "scissors") {
+        // player won with scissors
+        gamePlay.classList.add("middle");
+      } else {
+        // player lost with rock
+        gamePlay.classList.add("middle");
+        opp.classList.add("centered", "on-top");
+        player.classList.add("centered", "on-bottom");
+      }
+    } else { // result is a tie (just move to the middle)
+      gamePlay.classList.add("middle");
+    }
+  } else {
+    // computer chose scissors
+    compChoice = "oppScissors";
+    if (result !== "tie") {
+      if (choice === "rock") {
+        // player won with rock
+        gamePlay.classList.add("middle");
+        player.classList.add("centered", "on-top");
+        opp.classList.add("centered", "on-bottom");
+      } else {
+        // player lost with paper
+        gamePlay.classList.add("middle");
+      }
+    } else { // result is a tie (just move to the middle)
+      gamePlay.classList.add("middle");
+    }
+  }
+
+  // Change the shaking fist to the player's and opponent's choice
+  player.src = "images/" + choice + ".png";
+  opp.src = "images/" + compChoice + ".png";
+}
 
 function animation() {
   const divElem = document.getElementById("gamePlay");
   divElem.classList.add("showing");
 
   const player = document.getElementById("playerMove");
+  const opp = document.getElementById("oppMove");
+  const gamePlay = document.getElementById("gamePlay");
 
-  // Remove the shaking animation class if it's there
+  // Fade out current images
+  player.classList.add("hide");
+  opp.classList.add("hide");
+
+  // Reset positions and classes
+  document.getElementById("gamePlay").classList.remove("middle");
+  player.classList.remove("centered", "on-top", "on-bottom");
+  opp.classList.remove("centered", "on-top", "on-bottom");
+
+  // Reset positions and classes
   player.classList.remove("movingPlay");
-
-  // Force reflow 
+  opp.classList.remove("movingPlay");
+  player.style.transform = "translateX(0)";
+  opp.style.transform = "translateX(0)";
   void player.offsetWidth;
+  void opp.offsetWidth;
 
-  // Add class to trigger shaking animation
+  // Start shake animation
   player.classList.add("movingPlay");
+  opp.classList.add("movingPlay");
 }
-
-function compare(result) {
-
-}
-
 
 
 function reset() {
